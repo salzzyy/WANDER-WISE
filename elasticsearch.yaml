@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: elasticsearch
-          image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+          image: docker.elastic.co/elasticsearch/elasticsearch:9.1.0
           env:
             - name: discovery.type
               value: single-node
@@ -36,6 +36,9 @@ spec:
               value: "-Xms512m -Xmx512m"
             - name: xpack.security.enabled
               value: "false"
+            - name: ES_DISABLE_CGROUPS
+              value: "true"
+
           ports:
             - containerPort: 9200
           resources:
