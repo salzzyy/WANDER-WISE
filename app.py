@@ -3,7 +3,9 @@ from src.core.planner import TravelPlanner
 from dotenv import load_dotenv
 
 # Configure Streamlit page
-st.set_page_config(page_title="AI Travel Planner", page_icon="🌍", layout="centered")
+st.set_page_config(
+    page_title="WANDER-WISE ⛷️ AI Travel Planner", page_icon="✈️🧳", layout="centered"
+)
 
 # App title and description
 st.title("🗺️ AI Travel Itinerary Planner")
@@ -19,7 +21,10 @@ load_dotenv()
 # User input form
 with st.form("planner_form"):
     city = st.text_input("🏙️ Enter the city name for your trip:")
-    interests = st.text_input("🎯 Enter your interests (comma-separated):", placeholder="e.g., food, history, art, adventure")
+    interests = st.text_input(
+        "🎯 Enter your interests (comma-separated):",
+        placeholder="e.g., food, history, art, adventure",
+    )
     submitted = st.form_submit_button("✨ Generate Itinerary")
 
     if submitted:

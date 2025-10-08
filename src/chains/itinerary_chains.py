@@ -12,20 +12,22 @@ llm = ChatGroq(
 
 
 # Define the itinerary prompt template
-itnineary_prompt = ChatPromptTemplate.from_messages([
-    (
-        "system",
-        "You are a helpful travel assistant. Create a day trip itinerary for {city} "
-        "based on user's interests: {interests}. Provide a brief, bulleted itinerary."
-    ),
-    (
-        "human",
-        "Create an itinerary for my day trip."
-    )
-])
+itinerary_prompt = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            "You are an expert travel assistant who creates personalized, fun, and practical day trip itineraries. "
+            "For the city {city}, design a day trip based on the user's interests: {interests}. "
+            "Provide a detailed, chronologically organized itinerary, including morning, afternoon, and evening activities. "
+            "Include approximate timings, recommended places, local food experiences, cultural or adventurous activities, and any fun tips or insights. "
+            "Make it engaging, easy to follow, and tailored to the user's preferences.",
+        ),
+        ("human", "Please generate a complete and exciting day trip itinerary for me."),
+    ]
+)
 
 
-def generate_itineary(city: str, interests: list[str]) -> str:
+def generate_itinerary(city: str, interests: list[str]) -> str:
     """
     Generate a day trip itinerary for a given city based on user interests.
 
@@ -37,9 +39,8 @@ def generate_itineary(city: str, interests: list[str]) -> str:
         str: The generated itinerary as a string.
     """
     # Format prompt with user inputs
-    messages = itnineary_prompt.format_messages(
-        city=city,
-        interests=', '.join(interests)
+    messages = itinerary_prompt.format_messages(
+        city=city, interests=", ".join(interests)
     )
 
     # Get LLM response

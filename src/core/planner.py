@@ -1,5 +1,5 @@
 from langchain_core.messages import HumanMessage, AIMessage
-from src.chains.itinerary_chains import generate_itineary
+from src.chains.itinerary_chains import generate_itinerary
 from src.utils.logger import get_logger
 from src.utils.custom_exception import CustomException
 
@@ -38,7 +38,7 @@ class TravelPlanner:
             logger.info(
                 f"Generating itinerary for {self.city} with interests: {self.interests}"
             )
-            itineary = generate_itineary(self.city, self.interests)
+            itineary = generate_itinerary(self.city, self.interests)
             self.itineary = itineary
             self.messages.append(AIMessage(content=itineary))
             logger.info("Itinerary generated successfully")
